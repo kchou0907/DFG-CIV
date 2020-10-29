@@ -6,12 +6,25 @@ use Restserver\Libraries\REST_Controller;
 
 require APPPATH . '/libraries/REST_Controller.php';
 
+/**
+class that controls banks interface and how bank users react with page
+extends from REST_Controller class. 
+*/
 class Banks extends REST_Controller {
-
+    
+    /**
+    encodes usage from parent class
+    @param  none
+    @return none
+    */
     public function __construct() {
         parent::__construct();
     }
-
+    /**
+    encodes function to get the index of user
+    @param int $id, if none is given, id = 0 input number
+    @return none
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -25,7 +38,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to post index back for later usage
+    @param null
+    @returns null
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -71,7 +88,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to put index of user in file
+    @param int $id input number
+    @return null
+    */
     public function index_put($id) {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -85,7 +106,11 @@ class Banks extends REST_Controller {
             $this->response(['Bad Request'], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-
+    /**
+    encodes function to post banker info on front end view
+    @param null
+    @return null
+    */
     public function banker_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -142,7 +167,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to receive information from banker user
+    @param int $id, if none, null input number
+    @return null
+    */
     public function bankers_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -155,7 +184,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to give options based on index
+    @param null
+    @returns object method from $this
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
