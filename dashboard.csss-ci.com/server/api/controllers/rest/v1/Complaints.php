@@ -5,13 +5,24 @@ require 'header.php';
 use Restserver\Libraries\REST_Controller;
 
 require APPPATH . '/libraries/REST_Controller.php';
-
+/**
+class controls Complaint input/output and function of complaints
+extends from REST_Controller
+*/
 class Complaints extends REST_Controller {
-
+    /**
+    encodes function to take methods from parent class
+    @param null
+    @return null
+    */
     public function __construct() {
         parent::__construct();
     }
-
+    /**
+    encodes function to get index of user
+    @param null
+    @return null
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -25,7 +36,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    posts index of user back onto file referring to a complaint
+    @param null
+    @return null
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -47,7 +62,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to put index into file along with complaint 
+    @param null
+    @return null
+    */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -68,7 +87,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to get a townhall user
+    param int $id=null input number
+    @return null
+    */
     public function town_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -93,7 +116,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to get association
+    @param int $id=null input number
+    @return null
+    */
     public function association_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -108,7 +135,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes function to get household
+    @param int $id input number
+    @return null
+    */
     public function household_get($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -119,7 +150,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    encodes options for index of user
+    @param null
+    @return object method
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
