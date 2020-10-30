@@ -48,8 +48,8 @@ class Needs_model extends CI_Model {
     /**
      * Shows a certain amount of rows (top down)
      *
-     * @param Integer $nbre = number of rows to limit the resutls to
-     * @param Integer $base = numer of rows to skip
+     * @param Integer $nbre - number of rows to limit the results to
+     * @param Integer $base - numer of rows to skip
      * @return Array containing the amount of rows you specified
      */
     public function show($nbre, $base = 0) {
