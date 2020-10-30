@@ -6,10 +6,21 @@ class Households extends CI_Controller {
 
     private $_page = "households/";
 
+    /**
+     * Used if you want to use a custom local constructor
+     * Useful if you need to set some default values, or run a default process when your class is
+     *  instantiated
+     * Cannot return values, but can do some default work.
+     */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Performs form validation on make sure there is no erroneous information submitted
+     *  through the household connection form
+     * Loads the Sanitations views template but alters it to become the households page
+     */
     public function index() {
         $data['title'] = "Connexion de ménage";
         $data['active'] = 'households';
@@ -37,6 +48,11 @@ class Households extends CI_Controller {
         $this->template->load('Sanitations', $this->_page . 'index', $data);
     }
 
+    /**
+     * Performs form validation to make sure there is no erroneous information submitted
+     *  through the complaint form
+     * Loads the Sanitations views template but alters it to become the households page
+     */
     public function complaints() {
         if (!$this->session->has_userdata('id')) {
             redirect("households");
@@ -67,30 +83,45 @@ class Households extends CI_Controller {
         $this->template->load('Sanitations', $this->_page . 'complaints', $data);
     }
 
+    /**
+     * Loads the Sanitations views template but alters it to become the project page
+     */
     public function project() {
         $data['title'] = "Le projet CSSS";
         $data['active'] = 'project';
         $this->template->load('Sanitations', $this->_page . 'project', $data);
     }
 
+    /**
+     * Loads the Sanitations views template and makes it the sanitation page
+     */
     public function sanitation() {
         $data['title'] = "Assainissement";
         $data['active'] = 'sanitation';
         $this->template->load('Sanitations', $this->_page . 'sanitation', $data);
     }
 
+    /**
+     * Loads the Sanitations views template but alters it to become the households page
+     */
     public function households() {
         $data['title'] = "Ménages";
         $data['active'] = 'households';
         $this->template->load('Sanitations', $this->_page . 'households', $data);
     }
 
+    /**
+     * Loads the Sanitations views template but alters it to become the banks page
+     */
     public function banks() {
         $data['title'] = "Banques";
         $data['active'] = 'banks';
         $this->template->load('Sanitations', $this->_page . 'banks', $data);
     }
 
+    /**
+     * Loads the Sanitations views template but alters it to become the contact page
+     */
     public function contact() {
         $data['title'] = "Nous Contacter";
         $data['active'] = 'contact';
