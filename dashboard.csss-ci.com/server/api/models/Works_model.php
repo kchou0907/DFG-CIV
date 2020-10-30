@@ -10,7 +10,7 @@ class Works_model extends CI_Model {
     /**
      * Inserts data into the complaints table
      *
-     * @param E $data - the data to be inserted into the database
+     * @param Array $data - the data to be inserted into the database (associative array)
      * @return Array that states whether the action was completed or not
      */
     public function save($data) {
@@ -20,7 +20,7 @@ class Works_model extends CI_Model {
     /**
      * Finds the rows that fulfill the condition
      *
-     * @param E $where - the condition to be matched (associative array or String)
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
      * @return Array containing the rows that match the constraint
      */
     public function find($where) {
@@ -48,7 +48,7 @@ class Works_model extends CI_Model {
     /**
      * Get a quote for a particular proposal
      *
-    * @param E $where - the condition to be matched (associative array or String) (associative array or String)
+    * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
     * @return Array containing the quotation price
      */
     public function quote($where) {
@@ -81,7 +81,7 @@ class Works_model extends CI_Model {
      * Modifies existing records in the table
      *
      * @param Array $data - Array with data (field/value pairs)
-     * @param String $where - the where clause (associative array or String)
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
      * @return Boolean - true on success, false on failure
      */
     public function update($data, $where) {
@@ -92,8 +92,8 @@ class Works_model extends CI_Model {
     /**
      * Deletes rows form the table
      *
-     * @param E $where - the where clause (rows you want to delete, associative array or String)
-     * @return E - BaseBuilder instance (for method chaining) or FALSE on fail
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array, the rows you want to delete
+     * @return BaseBuilder/Boolean - BaseBuilder instance (for method chaining) or FALSE on fail
      */
     public function delete($where) {
         return $this->db->where($where)

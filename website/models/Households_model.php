@@ -20,7 +20,7 @@ class Households_model extends CI_Model {
     /**
      * Finds the rows that fulfill the condition
      *
-     * @param E $where - the condition to be matched (associative array or String)
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
      * @return Array containing the rows that match the constraint
      */
     public function find($where) {
@@ -65,7 +65,7 @@ class Households_model extends CI_Model {
      * Modifies existing records in the table
      *
      * @param Array $data - Array with data (field/value pairs)
-     * @param String $where - the where clause (which rows you want to replace, associative array or String)
+     * @param String $where - Name of field to compare (ex "id=4"), or associative array, rows you want to replace
      * @return Boolean - true on success, false on failure
      */
     public function update($data, $where) {
@@ -76,8 +76,8 @@ class Households_model extends CI_Model {
     /**
      * Deletes rows form the table
      *
-     * @param E $where - the where clause (rows you want to delete, associative array or String)
-     * @return E - BaseBuilder instance (for method chaining) or FALSE on fail
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array, rows you want to delete
+     * @return BaseBuilder/Boolean - BaseBuilder instance (for method chaining) or FALSE on fail
      */
     public function delete($where) {
         return $this->db->where($where)
