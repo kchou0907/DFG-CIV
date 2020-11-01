@@ -6,12 +6,23 @@ use Restserver\Libraries\REST_Controller;
 
 require APPPATH . '/libraries/REST_Controller.php';
 
+/**
+ * Class for Proposals API
+ */
 class Proposals extends REST_Controller {
 
+    /**
+     * Invokes the parent class's constructor 
+     */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Gets the index of the proposal
+     *
+     * @param Integer $id - integer for identification number, id = 0 if none is specified 
+     */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -26,6 +37,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Updates the proposal model with proposal information if all necessary fields are valid, otherwise throws an error  
+     */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -81,6 +95,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts quotation entry to proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -106,6 +123,11 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Deletes an entry in the proposals model if there is authorization to do so, otherwise throws an error  
+     *
+     * @param Integer $id - id number of quotation to be deleted 
+     */
     public function index_delete($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -131,6 +153,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts visit entry into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function visit_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -150,6 +175,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts certification ifnormation into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function certified_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -167,6 +195,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts selected information into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function selected_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -199,6 +230,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts work end date information into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function workEnd_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -215,6 +249,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts observation entry into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function observation_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -234,6 +271,11 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Inserts visit entry into the proposals model database if all necessary fields are valid, otherwise throws an error  
+     *
+     * @param Integer $id - integer for identification number, id = 0 if none is specified 
+     */
     public function submission_get($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -246,6 +288,11 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Finds the desired need id in the proposals model
+     *
+     * @param Integer $id - integer for identification number, id = 0 if none is specified 
+     */
     public function need_get($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -262,6 +309,11 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Finds the specified user's proposals
+     *
+     * @param Integer $id - integer for user id, id = null if none is specified 
+     */
     public function myProposals_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -274,6 +326,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Gets association id from the households model 
+     */
     public function association_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -294,6 +349,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Gets association projects from the households model
+     */
     public function associationProjects_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -314,6 +372,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Gets the last five associations from the proposals model
+     */
     public function associationLast_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -334,6 +395,9 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Gets the town hall data from the proposals model
+     */
     public function town_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) and $is_valid_token['status'] === TRUE) {
@@ -346,6 +410,13 @@ class Proposals extends REST_Controller {
         }
     }
 
+    /**
+     * Sends an email to the email address specified with desired message and subject header
+     *
+     * @param String $email - Email address string
+     * @param String $message - Message of email 
+     * @param String $objet - Subject line of email
+     */
     private function sendMail($email, $message, $objet) {
         $config = array();
         $config['protocol'] = 'mail';
@@ -365,6 +436,11 @@ class Proposals extends REST_Controller {
         $this->email->send();
     }
 
+    /**
+     * Returns an HTTP response status code (defaults to NULL) and phrase 
+     *
+     * @return Codeigniter\HTTP\Response status code and phrase  
+     */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
