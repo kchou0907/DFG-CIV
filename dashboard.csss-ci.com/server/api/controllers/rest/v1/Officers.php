@@ -6,12 +6,23 @@ use Restserver\Libraries\REST_Controller;
 
 require APPPATH . '/libraries/REST_Controller.php';
 
+/**
+ * Class for Officers API
+ */
 class Officers extends REST_Controller {
 
+    /**
+     * Invokes the parent class's constructor 
+     */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Gets the officer's id 
+     *
+     * @param Integer $id - integer for identification number, id = 0 if none is specified 
+     */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -26,6 +37,9 @@ class Officers extends REST_Controller {
         }
     }
 
+    /**
+     * Creates an officer account if all necessary fields are valid, otherwise throws an error  
+     */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -84,6 +98,9 @@ class Officers extends REST_Controller {
         }
     }
 
+    /**
+     * Updates officers model database if all necessary fields are valid, otherwise throws an error  
+     */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -108,6 +125,11 @@ class Officers extends REST_Controller {
         }
     }
 
+    /**
+     * Finds the officers associated with a town hall id 
+     *
+     * @param Integer $id - integer for identification number, id = null if none is specified 
+     */
     public function town_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -121,6 +143,9 @@ class Officers extends REST_Controller {
         }
     }
 
+    /**
+     * Updates an officer's password if the officer id is valid and if the 'password' and 'new password' fields are not empty, otherwise throws an error 
+     */
     public function password_put() {
         $verify = $this->verification->authorization();
         $id = $verify->id;
@@ -142,6 +167,11 @@ class Officers extends REST_Controller {
         }
     }
 
+    /**
+     * Returns an HTTP response status code (defaults to NULL) and phrase 
+     *
+     * @return Codeigniter\HTTP\Response status code and phrase  
+     */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
