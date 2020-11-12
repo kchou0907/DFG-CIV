@@ -7,11 +7,19 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . '/libraries/REST_Controller.php';
 
 class Banks extends REST_Controller {
-
+    /**
+     *extends the parent constructer method
+    */
     public function __construct() {
         parent::__construct();
     }
-
+    /**
+     *sets up conditional that if there is a valid token and that its status is 'true', 
+      then creates an array if the id is not empty. If id is empty then all the rows from bank_model is placed in the array. 
+      Then sets a message that HTTP is responsive. 
+      If there isn't a valid token or status is false, spits a response that HTTP is not found
+     * @param int $id = 0 - id of bank user
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -25,7 +33,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * saves user information within database with id, password, email, phone, banker name, etc. 
+       if cannnot update query, sets a response that says HTTP is unavailable. If there is no valid token 
+       or the status of said token is false, then response will say HTTP not found. 
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -71,7 +83,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * updates Bank_model database with the id of the user and the bank of the user 
+       if there is no townhall or json file is bad, then response will show HTTP not found. 
+     * @param String/Array $id - id of bank user
+    */
     public function index_put($id) {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -85,7 +101,13 @@ class Banks extends REST_Controller {
             $this->response(['Bad Request'], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-
+    /**
+     * sets up banker user with id, bankid, banker name, phone, email, and password and saves it to banker_model query
+       also sets up html to display fields that banker user sees and needs to input 
+       also sends email to banker email from admin email confirming account creation
+       if valid_token is empty or its status is false, HTTP will not be found. If any of the fields are not put in
+       HTTP would read bad request. 
+    */
     public function banker_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -142,7 +164,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * gets the id and bank id of the user. If id not found, then town id is used instead
+       If valid_token is empty or its staus is false, HTTP isn't found
+     * @param String/Array $id - id of banker user
+    */
     public function bankers_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -155,7 +181,10 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * gets the response that HTTP is okay to go 
+     * @ return null - runs the script with HTTP okay
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
