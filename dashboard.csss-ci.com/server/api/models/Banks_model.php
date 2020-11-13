@@ -7,18 +7,25 @@ class Banks_model extends CI_Model {
 
     protected $table = "banks";
 
-    // Inserts the new model into the banks table.
-    // 
-    // @data - new bank model
-    // @return bool - True if inserted successfully; False, otherwise
+    /*
+    * Adds the data array into the banks table.
+    * 
+    * @data array - new item to insert into table
+    *
+    * @return bool - True if inserted successfully; False, otherwise
+    */
     public function save($data) {
         return $this->db->insert($this->table, $data);
     }
 
-    // Retrieves the model from the banks table.
-    // 
-    // @where key - location of the model to retrieve
-    // @return - the model at the given location
+    /*
+    * Retrieves rows with the given field name or associative array.
+    * 
+    * @where String or array - name of field to compare or associative array
+    *                          to compare from table
+    *
+    * @return array - array of rows matching the field name or associative array
+    */
     public function find($where) {
         return $this->db->select('*')
                         ->from($this->table)
@@ -27,9 +34,11 @@ class Banks_model extends CI_Model {
                         ->result();
     }
 
-    // Retrieves all the models from the banks table.
-    // 
-    // @return array - all the models from the table
+    /*
+    * Retrieves all the rows from the banks table.
+    * 
+    * @return array - array containing all the rows from the table
+    */
     public function getAll() {
         return $this->db->select('*')
                         ->from($this->table)
@@ -37,11 +46,15 @@ class Banks_model extends CI_Model {
                         ->result();
     }
 
-    // Displays a number of rows from top to bottom.
-    // 
-    // @nbre int - number of rows to limit the results to
-    // @base int - number of rows to skip
-    // @return - the model at the given location
+    /*
+    * Displays a number of rows from top to bottom.
+    *
+    * @nbre int - number of rows to limit the results to
+    * @base int - number of rows to skip
+    *
+    * @return array - array containing a number of rows limited from top to
+    *                 bottom
+    */
     public function show($nbre, $base = 0) {
         return $this->db->select('*')
                         ->from($this->table)
@@ -50,28 +63,39 @@ class Banks_model extends CI_Model {
                         ->result();
     }
 
-    // Updates the model from the banks table.
-    // 
-    // @where key - location of the model to update
-    // @return - the model at the given location
+    /*
+    * Updates the row from the banks table.
+    * 
+    * @where String or array - name of field to compare or associative array
+    *                          to compare from table
+    *
+    * @return bool - True if update successful; False, otherwise
+    */
     public function update($data, $where) {
         return $this->db->where($where)
                         ->update($this->table, $data);
     }
 
-    // Delete the model from the banks table.
-    // 
-    // @where key - location of the model to delete
-    // @return - the model at the given location
+    /*
+    * Delete the given row from the banks table.
+    *
+    * @where String or array - name of field to compare or associative array
+    *                          to compare from table
+    *
+    * @return bool - True if delete successful; False, otherwise
+    */
     public function delete($where) {
         return $this->db->where($where)
                         ->delete($this->table);
     }
-
-    // Count the number of rows in the bankrolls table.
-    // 
-    // @where key - location of the model to delete
-    // @return int - total number of rows in the banks table, or 0
+    /*
+    * Count the number of rows in the banks table.
+    *
+    * @where String or array - name of field to compare or associative array
+    *                          to compare from table
+    *
+    * @return int - total number of rows in the banks table, or 0
+    */
     public function count($data = NULL) {
         return $this->db->where($data)
                         ->count_all($this->table);

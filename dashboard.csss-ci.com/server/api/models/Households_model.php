@@ -9,12 +9,12 @@ if (!defined('BASEPATH'))
 
 class Households_model extends CI_Model {
     
-    /**
+    /*
      * Data table for class manipulation
      */
     protected $table = "households";
 
-    /**
+    /*
      * Inserts data in the households table
      *
      * @param Array $data - the data to be inserted into the database
@@ -24,12 +24,14 @@ class Households_model extends CI_Model {
         return $this->db->insert($this->table, $data);
     }
 
-    /**
-     * Finds and returns data and rows with desired association
-     *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired association
-     */
+    /*
+    * Retrieves rows with the given associations.
+    * 
+    * @where String or array - name of field to compare or associative array
+    *                          to compare from table
+    *
+    * @return array - array of rows containing the given associations
+    */
     public function find($where) {
         return $this->db->select('*')
                         ->from($this->table)
@@ -39,7 +41,7 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
+    /*
      * Returns all rows in households table
      * 
      * @return Array of all rows 
@@ -52,7 +54,7 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
+    /*
      * Returns all records where family size is a desired amount
      *
      * @param Array or String $where - Associative array or custom string
@@ -67,11 +69,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of men with desired association with additional filter 
+    /*
+     * Returns all records of men with the sum of men and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function men($where) {
         return $this->db->select_sum('men')
@@ -82,10 +87,10 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of men with desired association
+    /*
+     * Returns all records of men with the sum of men and the given association.
      *
-     * @return Array containing rows with desired association
+     * @return Array containing rows with given association
      */
     public function mens() {
         return $this->db->select_sum('men')
@@ -95,11 +100,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of women with desired association with additional filter
+    /*
+     * Returns all records of women with the sum of women and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function woman($where) {
         return $this->db->select_sum('woman')
@@ -110,10 +118,10 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of women with desired association
+    /*
+     * Returns all records of women with the sum of men and the given association.
      *
-     * @return Array containing rows with desired association
+     * @return Array containing rows with given association
      */
     public function women() {
         return $this->db->select_sum('woman')
@@ -123,11 +131,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of children with desired association with additonal filter
+    /*
+     * Returns all records of children with the sum of child and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function child($where) {
         return $this->db->select_sum('child')
@@ -138,10 +149,11 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records of children with desired association
+    /*
+     * Returns all records of children with the sum of men and the given 
+     * association.
      *
-     * @return Array containing rows with desired age association
+     * @return Array containing rows with given association
      */
     public function children() {
         return $this->db->select_sum('child')
@@ -151,11 +163,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association with additonal filter 
+    /*
+     * Returns all records of children with the sum of age0 and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired age association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function age0($where) {
         return $this->db->select_sum('age0')
@@ -166,10 +181,11 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age0 and the given 
+     * association.
      *
-     * @return Array containing rows with desired age association
+     * @return Array containing rows with given association
      */
     public function ages0() {
         return $this->db->select_sum('age0')
@@ -179,11 +195,12 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age15 and the given 
+     * association.
      *
-     * @return Array containing rows with desired age association
-     */   
+     * @return Array containing rows with given association
+     */
     public function ages15() {
         return $this->db->select_sum('age15')
                         ->from($this->table)
@@ -192,11 +209,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age15 and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired age association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function age15($where) {
         return $this->db->select_sum('age15')
@@ -207,11 +227,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age22 and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired age association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function age22($where) {
         return $this->db->select_sum('age22')
@@ -222,10 +245,11 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age22 and the given 
+     * association.
      *
-     * @return Array containing rows with desired age association
+     * @return Array containing rows with given association
      */
     public function ages22() {
         return $this->db->select_sum('age22')
@@ -235,11 +259,14 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age49 and the given name of
+     * field to compare or associative array to compare from table.
+     *                                 
      *
-     * @param Array or String $where - Associative array or custom string
-     * @return Array containing rows with desired age association
+     * @param Array or String @where - name of field to compare or associative
+     *                                 array to compare from table
+     * @return Array containing rows with given association
      */
     public function age49($where) {
         return $this->db->select_sum('age49')
@@ -250,10 +277,11 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
-     * Returns all records with desired age association
+    /*
+     * Returns all records of children with the sum of age49 and the given 
+     * association.
      *
-     * @return Array containing rows with desired age association
+     * @return Array containing rows with given association
      */
     public function ages49() {
         return $this->db->select_sum('age49')
@@ -263,7 +291,7 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
+    /*
      * Displays a certain number rows in table
      *
      * @param Integer $nbre - number of rows to limit the results to
@@ -279,11 +307,12 @@ class Households_model extends CI_Model {
                         ->result();
     }
 
-    /**
+    /*
      * Modifies records in table 
      *
      * @param Array $data - Data for the new table
-     * @param Array or string $where - Associative array or custom string
+     * @param Array or string $where - Name of field to compare or associative
+    *                                  array to compare from table
      * @return Boolean indicating success of update
      */
     public function update($data, $where) {
@@ -291,7 +320,7 @@ class Households_model extends CI_Model {
                         ->update($this->table, $data);
     }
 
-    /**
+    /*
      * Deletes all rows with desired association
      *
      * @param Array or String $where - Associative array or custom string of rows to be deleted
@@ -302,7 +331,7 @@ class Households_model extends CI_Model {
                         ->delete($this->table);
     }
 
-    /**
+    /*
      * Counts the number of rows with desired association  
      *
      * @param Array $data - desired value

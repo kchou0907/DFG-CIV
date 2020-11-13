@@ -13,7 +13,7 @@ class Needs_model extends CI_Model {
     /**
      * Inserts data in the needs table
      *
-     * @param Array $data - the data to be inserted into the database
+     * @param Array $data - Assocative array of field/values to be added to table
      * @return Boolean indicating success of insertion
      */
     public function save($data) {
@@ -23,7 +23,8 @@ class Needs_model extends CI_Model {
     /**
      * Finds and returns data and rows with desired association
      *
-     * @param Array or String $where - Associative array or custom string
+     * @param Array or String $where - Name of field to compare or associative
+    *                                  array to compare from table
      * @return Array containing rows with desired association
      */
     public function find($where) {
@@ -39,7 +40,7 @@ class Needs_model extends CI_Model {
     /**
      * Returns all rows in needs table
      * 
-     * @return Array of all rows 
+     * @return Array containing all the rows 
      */
     public function getAll() {
         return $this->db->select('*')
@@ -70,8 +71,9 @@ class Needs_model extends CI_Model {
     /**
      * Modifies records in table 
      *
-     * @param Array $data - Data for the new table
-     * @param Array or string $where - Associative array or custom string
+     * @param Array $data - Assocative array of field/values to be added to table
+     * @param Array or string $where - Name of field to compare or associative
+    *                                  array to compare from table
      * @return Boolean indicating success of update
      */
     public function update($data, $where) {
@@ -82,7 +84,8 @@ class Needs_model extends CI_Model {
     /**
      * Deletes all rows with desired association
      *
-     * @param Array or String $where - Associative array or custom string of rows to be deleted
+     * @param Array or String $where - Name of field to compare or associative
+    *                                  array to compare from table
      * @return Boolean indication success of deletion 
      */
     public function delete($where) {
