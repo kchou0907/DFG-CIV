@@ -49,7 +49,7 @@ class Complaints_model extends CI_Model {
      * Shows a certain amount of rows (top down)
      *
      * @param Integer $nbre - number of rows to limit the results to
-     * @param Integer $base - numer of rows to skip
+     * @param Integer $base - number of rows to skip
      * @return Array containing the amount of rows you specified
      */
     public function show($nbre, $base = 0) {
@@ -64,8 +64,9 @@ class Complaints_model extends CI_Model {
     /**
      * Modifies existing records in the table
      *
-     * @param Array $data - Array with data (field/value pairs)
-     * @param String $where - Name of field to compare (ex "id=4"), or associative array, rows you want to replace
+     * @param Array $data - Array of data (field/value pairs) the table will be updated with
+     * @param String $where - Name of field to match (ex "id=4"), or associative array;
+     *               rows that match will be updated
      * @return Boolean - true on success, false on failure
      */
     public function update($data, $where) {
@@ -74,9 +75,10 @@ class Complaints_model extends CI_Model {
     }
 
     /**
-     * Deletes rows form the table
+     * Deletes rows from the table
      *
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array, rows you want to delete
+     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array;
+     *                     matched rows will be deleted
      * @return BaseBuilder/Boolean - BaseBuilder instance (for method chaining) or FALSE on fail
      */
     public function delete($where) {
@@ -85,10 +87,10 @@ class Complaints_model extends CI_Model {
     }
 
     /**
-     * Counts the number of rows in the entity with a particular value
+     * Counts the number of rows in the entity with particular values
      *
      * @param Array $data - what you want to match
-     * @return Integer - number of rows
+     * @return Integer - number of rows with the data
      */
     public function count($data = NULL) {
         return $this->db->where($data)
