@@ -4,9 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Suppliers_model extends CI_Model {
-    /**
-     * this a is a private table/database/query use for suppliers model
-    */
+
     protected $table = "suppliers";
     /**
      * Inserts data into the suppliers table
@@ -17,8 +15,8 @@ class Suppliers_model extends CI_Model {
         return $this->db->insert($this->table, $data);
     }
     /**
-     * finds the row that fulfills the conditionals
-     * @param Array/String $where - Name of the field to compare to
+     * finds the row that fulfills the condition
+     * @param Array/String $where - Condition to be matched
      * @return Array - returns an Array with the rows that matches the specfications
     */
     public function find($where) {
@@ -31,10 +29,10 @@ class Suppliers_model extends CI_Model {
                         ->result();
     }
     /**
-     * gets the login information from the query table for townHalls
-     * @param Array/String $where - Name of field to compare to
-     * @param Array/String $where - Another Name of field to compare to
-     * @return Array - array with the login information of user from query
+     * gets the rows from the suppliers table that matches the two conditions (meant for login)
+     * @param Array/String $where - Condition to be matched
+     * @param Array/String $where - Another condition to be matched
+     * @return Array - array of all the rows that match the two conditions
     */
     public function login($where, $orWhere) {
         return $this->db->select('*')
@@ -59,10 +57,10 @@ class Suppliers_model extends CI_Model {
                         ->result();
     }
     /**
-     * shows a number of rows with constrainst set by parameters(top down)
+     * get a certain number of rows(top down)
      * @param int $nbre - number of rows to be limited to
      * @param $base=0 - number of rows to be skipped 
-     * @return Array - array containing the number of rows returned with the constraints
+     * @return Array - array containing the specified amount of rows
     */
     public function show($nbre, $base = 0) {
         return $this->db->select('*')
@@ -85,7 +83,7 @@ class Suppliers_model extends CI_Model {
     }
     /**
      * deletes a row from the query table
-     * @param Array/String $where - Name of field to compare to
+     * @param Array/String $where - Condition to be matched
      * @return BaseBuilder/boolean - return BaseBuilder if sucessful(for method chaining), if failed, returns false
     */
     public function delete($where) {
@@ -94,8 +92,8 @@ class Suppliers_model extends CI_Model {
     }
     /**
      * counts the number of rows in table with a data of a particular value
-     * @param Array $data - an array with data to be matched to
-     * @return int - number of rows with data specified
+     * @param Array $data - an array with data to be matched
+     * @return int - number of rows that have the specified data
     */
     public function count($data = NULL) {
         return $this->db->where($data)
