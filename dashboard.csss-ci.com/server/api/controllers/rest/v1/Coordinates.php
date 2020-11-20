@@ -8,15 +8,16 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Coordinates extends REST_Controller {
     /**
-    extends the parent constructer method
-    */
+     * Used if you want to use a custom local constructor
+     * Useful if you need to set some default values, or run a default process when your class is
+     *  instantiated
+     * Cannot return values, but can do some default work.
+     */
     public function __construct() {
         parent::__construct();
     }
     /**
-     *updates the townHall_model with the townHall name and the id of the townHall 
-      If the townhall name is empty then exits the script with bad request message. 
-      If there isn't a valid token or status is false,  exits script
+     * Performs authentication and updates the townhall table with form data
      * @param int $id - id of user
     */
     public function index_put($id) {
@@ -37,8 +38,8 @@ class Coordinates extends REST_Controller {
         }
     }
     /**
-     * gets the response that HTTP is okay to go 
-     * @ return null - runs the script with HTTP okay
+     * checks to see if the controller is working
+     * @return Response - returns response object with no body, but status of ok
     */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);

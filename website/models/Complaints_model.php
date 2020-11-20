@@ -20,7 +20,7 @@ class Complaints_model extends CI_Model {
     /**
      * Finds the rows that fulfill the condition
      *
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
+     * @param Array/String $where - Name of field to match (ex "id=4"), or associative array
      * @return Array containing the rows that match the constraint
      */
     public function find($where) {
@@ -77,7 +77,7 @@ class Complaints_model extends CI_Model {
     /**
      * Deletes rows from the table
      *
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array;
+     * @param Array/String $where - Name of field to match (ex "id=4"), or associative array;
      *                     matched rows will be deleted
      * @return BaseBuilder/Boolean - BaseBuilder instance (for method chaining) or FALSE on fail
      */

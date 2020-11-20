@@ -8,7 +8,7 @@ class Works_model extends CI_Model {
     protected $table = "works";
 
     /**
-     * Inserts data into the complaints table
+     * Inserts data into the works table
      *
      * @param Array $data - the data to be inserted into the database (associative array)
      * @return Array that states whether the action was completed or not
@@ -20,7 +20,7 @@ class Works_model extends CI_Model {
     /**
      * Finds the rows that fulfill the condition
      *
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
+     * @param Array/String $where - Name of field to match (ex "id=4"), or associative array
      * @return Array containing the rows that match the constraint
      */
     public function find($where) {
@@ -33,7 +33,7 @@ class Works_model extends CI_Model {
     }
 
     /**
-     * Returns every row in the complaints table and their related households
+     * Returns every row in the works table and their related proposals
      *
      * @return Array containing all the rows
      */
@@ -48,7 +48,7 @@ class Works_model extends CI_Model {
     /**
      * Get a quote for a particular proposal
      *
-    * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
+    * @param Array/String $where - Name of field to match (ex "id=4"), or associative array
     * @return Array containing the quotation price
      */
     public function quote($where) {
@@ -65,7 +65,7 @@ class Works_model extends CI_Model {
      * Shows a certain amount of rows (top down)
      *
      * @param Integer $nbre - number of rows to limit the results to
-     * @param Integer $base - numer of rows to skip
+     * @param Integer $base - number of rows to skip
      * @return Array containing the amount of rows you specified
      */
     public function show($nbre, $base = 0) {
@@ -80,8 +80,9 @@ class Works_model extends CI_Model {
     /**
      * Modifies existing records in the table
      *
-     * @param Array $data - Array with data (field/value pairs)
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array
+     * @param Array $data - Array of data (field/value pairs) the table will be updated with
+     * @param String $where - Name of field to match (ex "id=4"), or associative array;
+     *               rows that match will be updated
      * @return Boolean - true on success, false on failure
      */
     public function update($data, $where) {
@@ -90,9 +91,10 @@ class Works_model extends CI_Model {
     }
 
     /**
-     * Deletes rows form the table
+     * Deletes rows from the table
      *
-     * @param Array/String $where - Name of field to compare (ex "id=4"), or associative array, the rows you want to delete
+     * @param Array/String $where - Name of field to match (ex "id=4"), or associative array;
+     *                     matched rows will be deleted
      * @return BaseBuilder/Boolean - BaseBuilder instance (for method chaining) or FALSE on fail
      */
     public function delete($where) {
@@ -101,10 +103,10 @@ class Works_model extends CI_Model {
     }
 
     /**
-     * Counts the number of rows in the entity with a particular value
+     * Counts the number of rows in the entity with particular values
      *
      * @param Array $data - what you want to match
-     * @return Integer - number of rows
+     * @return Integer - number of rows with the data
      */
     public function count($data = NULL) {
         return $this->db->where($data)
