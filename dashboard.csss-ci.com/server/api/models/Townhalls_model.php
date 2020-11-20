@@ -4,12 +4,10 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Townhalls_model extends CI_Model {
-    /**
-     * this a is a private table/database/query use for townHalls model
-    */
+
     protected $table = "townHalls";
     /**
-     * Inserts data into the townHalls table
+     * Inserts data(new row) into the townHalls table
      * @param Array $data - the data to be inserted into townHalls model
      * @return boolean - boolean that returns true if data is inserted correctly, false if not
     */
@@ -17,9 +15,9 @@ class Townhalls_model extends CI_Model {
         return $this->db->insert($this->table, $data);
     }
     /**
-     * finds the row that fulfills the conditionals
-     * @param Array/String $where - Name of the field to compare to
-     * @return Array - returns an Array with the rows that matches the specfications
+     * finds rows that fulfill the condition
+     * @param Array/String $where - Condition to be matched
+     * @return Array - returns an Array with the rows that match the specfications
     */
     public function find($where) {
         return $this->db->select('*')
@@ -29,8 +27,8 @@ class Townhalls_model extends CI_Model {
                         ->result();
     }
     /**
-     * gets all the rows from the query table
-     * @return Array - returns an Array with all the rows from query table
+     * gets all the rows from the townHalls table
+     * @return Array - returns an Array with all the rows from townHalls table
     */
     public function getAll() {
         return $this->db->select('*')
@@ -53,9 +51,9 @@ class Townhalls_model extends CI_Model {
     }
     /**
      * updates existing data within query
-     * @param Array $data - an array with data to be updated
-     * @param Array/String - Name of field to compare to
-     * @return boolean - returns true if sucessful, false if not
+     * @param Array $data - an array with data the row should be updated with
+     * @param Array/String $where - Condition to be matched, rows to be updated
+     * @return boolean - returns true if successful, false if not
     */
     public function update($data, $where) {
         return $this->db->where($where)
@@ -63,7 +61,7 @@ class Townhalls_model extends CI_Model {
     }
     /**
      * deletes a row from the query table
-     * @param Array/String $where - Name of field to compare to
+     * @param Array/String $where - Condition to be matched
      * @return BaseBuilder/boolean - return BaseBuilder if sucessful(for method chaining), if failed, returns false
     */
     public function delete($where) {
@@ -72,8 +70,8 @@ class Townhalls_model extends CI_Model {
     }
     /**
      * counts the number of rows in table with a data of a particular value
-     * @param Array $data - an array with data to be matched to
-     * @return int - number of rows with data specified
+     * @param Array $data - an array with data vales to be matched
+     * @return int - number of rows with that contain the specified data
     */
     public function count($data = NULL) {
         return $this->db->where($data)
