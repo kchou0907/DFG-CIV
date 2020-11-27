@@ -9,10 +9,17 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Admins extends REST_Controller {
 
+    /**
+    * Used to instantiate an Admins Controller. Calls the REST_Controller as a superclass constructor
+    */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+    * Gets all admins unless specified by an admin $id
+    * @param integer $id - specified ID of an admin to retrieve
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -27,6 +34,11 @@ class Admins extends REST_Controller {
         }
     }
 
+    /**
+    * Creates a new admin account. Once the new admin account is created it produces and sends an
+    * email to the registered admin to confirm the admins registration
+    * retrieves its attributes data from an uploaded file
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -80,6 +92,11 @@ class Admins extends REST_Controller {
         }
     }
 
+    /**
+    * Updates an existing admin account. The admin account is registered by it's $id.
+    *  The data it will update the admin with is entered by a file input
+    * @param integer $id - the ID in the database specifying the admin account
+    */
     public function index_put($id) {
 
         $is_valid_token = $this->authorization_token->validateToken();
@@ -103,6 +120,11 @@ class Admins extends REST_Controller {
         }
     }
 
+    /**
+    * Updates an existing admin account's password. The admin account is registered by it's $id.
+    *  The data it will update the admin with a new password that is fetched by a file_input
+    * @param integer $id - the ID in the database specifying the admin account to update the password
+    */
     public function password_put($id) {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -125,6 +147,10 @@ class Admins extends REST_Controller {
         }
     }
 
+    /**
+    *  Retrieve all households that have women as the family chief/head of household from the
+    *   household model. This access is only accessable in Admin accounts
+    */
     public function womenChief_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -134,7 +160,9 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have men. This access is only accessable in Admin accounts
+    */
     public function mens_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -149,7 +177,9 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have women. This access is only accessable in Admin accounts
+    */
     public function women_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -164,7 +194,9 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have children. This method is only accessable in Admin accounts
+    */
     public function children_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -179,7 +211,10 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have individuals with birthdays after Janurary 2006 .
+    *    This method is only accessable in Admin accounts
+    */
     public function ages0_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -196,7 +231,10 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have individuals with birthdays before 2006 and after 1998.
+    *    This method is only accessable in Admin accounts
+    */
     public function ages15_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -212,7 +250,10 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have individuals with birthdays between 1971 and 1997.
+    *    This method is only accessable in Admin accounts
+    */
     public function ages22_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -228,7 +269,10 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Retrieve all households that have individuals with birthdays before 1970
+    *    This method is only accessable in Admin accounts
+    */
     public function ages49_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -244,7 +288,10 @@ class Admins extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Healthcheck for this API endpoint. Returns a status of 200 OK if the controller has not run
+    *   into any errors
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
