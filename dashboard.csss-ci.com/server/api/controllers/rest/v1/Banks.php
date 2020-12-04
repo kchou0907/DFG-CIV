@@ -7,11 +7,17 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . '/libraries/REST_Controller.php';
 
 class Banks extends REST_Controller {
-
+    /**
+    extends the parent constructer method
+    */
     public function __construct() {
         parent::__construct();
     }
-
+    /**
+     *performs authentication. creates an array if the id is not empty. 
+     *If empty then all the rows from banks_model is placed in the array.
+     * @param int $id = 0 - id of bank user
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -25,7 +31,10 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * performs authentication. checks to see if banker form is empty. 
+     * if it is not empty, stores information within database in banker_model
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -71,7 +80,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * checks authentication. sees if banker form is filled out. 
+     * if filled out updates information within database
+     * @param String/Array $id - id of bank user
+    */
     public function index_put($id) {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -85,7 +98,11 @@ class Banks extends REST_Controller {
             $this->response(['Bad Request'], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-
+    /**
+     * performs authentication. sees if form is filled out and if it is, saves information within database
+       also sets up html to display fields that banker user sees and needs to input 
+       also sends email to banker email from admin email confirming account creation
+    */
     public function banker_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -142,7 +159,11 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * extracts information from banker_model and saves it 
+     * in a array
+     * @param String/Array $id - id of banker user
+    */
     public function bankers_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -155,7 +176,10 @@ class Banks extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * gets the response that HTTP is okay to go 
+     * @ return null - runs the script with HTTP okay
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
