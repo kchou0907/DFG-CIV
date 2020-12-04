@@ -12,6 +12,11 @@ class Authentication extends REST_Controller {
         parent::__construct();
     }
 
+    /**
+    * Logs a user in and assigns a value for role stored in a session token
+    *  depending on what type of user is logging in. It also assigns the officer and town variables
+    * to the login token
+    */
     public function index_post() {
         $data = json_decode(file_get_contents('php://input'), true);
 
@@ -157,6 +162,11 @@ class Authentication extends REST_Controller {
         }
     }
 
+    /**
+    *  A user is able to update their password through this by fetching the input payload on this PUT
+    *   request. The input form data includes an old password, new password, and ensures that the
+    *   user enters both of those fields to update their account.
+    */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -188,6 +198,9 @@ class Authentication extends REST_Controller {
         }
     }
 
+    /**
+    *  Returns the User data and information associated to the sessions' validation token
+    */
     public function user_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -197,7 +210,11 @@ class Authentication extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  A user is able to update their password through this by fetching the input payload on this PUT
+    *   request. The input form data includes an old password, new password, and ensures that the
+    *   user enters both of those fields to update their account.
+    */
     public function password_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -257,7 +274,10 @@ class Authentication extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_UNAUTHORIZED);
         }
     }
-
+    /**
+    * Resets the password and token of a User. This allows for new token authentication to
+    *  occur upon reset of a new password
+    */
     public function reset_put() {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -296,6 +316,10 @@ class Authentication extends REST_Controller {
         }
     }
 
+    /**
+    * Resets password by generating new password for user when they authenticate their email.
+    * An email is sent containing the new password through the sendMail method
+    */
     public function forgot_put() {
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -340,8 +364,11 @@ class Authentication extends REST_Controller {
         }
     }
 
+    /**
+    *  Mailing Service that composes an email containing the new password for a User who forgot their
+    *  password to the dashboard
+    */
     private function sendMail($email, $password) {
-
 
         $message = "<p>Cher Partenaire, </p>"
                 . "<p>Vous avez demandé à réinitialiser votre mot de passe.<br>"
@@ -367,7 +394,10 @@ class Authentication extends REST_Controller {
         $this->email->message($message);
         $this->email->send();
     }
-
+    /**
+    *  Healthcheck for this API endpoint. Returns a status of 200 OK if the controller has not run
+    *   into any errors
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }

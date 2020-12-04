@@ -8,10 +8,17 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Associations extends REST_Controller {
 
+    /**
+    * Used to instantiate an Associations Controller. Calls the REST_Controller as a superclass constructor
+    */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+    * Gets all associations unless specified by an admin $id
+    * @param integer $id - specified ID of an admin to retrieve
+    */
     public function index_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -26,6 +33,11 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Creates a new association account. Once the new association account is created it produces and sends an
+    * email to the registered association to confirm the association registration
+    * retrieves its attributes data from an uploaded file
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -86,7 +98,11 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    * Updates an existing association account. The association account is
+    *  registered by it's the association data entered by an input form.
+    *  The data it will update the association with is entered by a file input
+    */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -146,7 +162,12 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    * Updates an existing associations account's password. The association account is registered
+    * by it's idassociation found in its form .
+    *  The data it will update the association with a new password that is fetched by a file_input
+    * @param integer $id - the ID in the database specifying the association account to update the password
+    */
     public function password_put() {
         $data = json_decode(file_get_contents('php://input'), true);
         if (!empty($data["password"]) && !empty($data["npassword"])) {
@@ -170,7 +191,10 @@ class Associations extends REST_Controller {
             $this->response(['Bad Request'], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-
+    /**
+    * Retrieves a number that represents the number of family members under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function familySize_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -188,6 +212,10 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Retrieves a number that represents the number of men in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function men_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -205,6 +233,10 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Retrieves a number that represents the number of women in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function women_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -221,7 +253,10 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    * Retrieves a number that represents the number of babies in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function age0_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -239,6 +274,10 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Retrieves a number that represents the number of 15 year olds  in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function age15_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -255,7 +294,10 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    * Retrieves a number that represents the number of 22 year olds in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function age22_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -272,7 +314,10 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    * Retrieves a number that represents the number of 49 year olds in families under this association
+    * @param integer $id - the ID in the database specifying the association filtering the households
+    */
     public function age49_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -290,6 +335,10 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Retrieves the townhall associated to this association
+    * @param integer $id - the ID in the database specifying the townHall filtering the households
+    */
     public function town_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -305,7 +354,10 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+    *  Healthcheck for this API endpoint. Returns a status of 200 OK if the controller has not run
+    *   into any errors
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
