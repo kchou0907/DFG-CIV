@@ -7,11 +7,17 @@ use Restserver\Libraries\REST_Controller;
 require APPPATH . '/libraries/REST_Controller.php';
 
 class Complaints extends REST_Controller {
-
+    /**
+    extends the parent constructer method
+    */
     public function __construct() {
         parent::__construct();
     }
-
+    /**
+     *performs authentication. creates an array if the id is not empty. 
+     *If empty then all the rows from complaint_model is placed in the array. 
+     * @param int $id = 0 - id of user
+    */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -25,7 +31,10 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * checks authentication. checks to see if complaint form is filled out
+     * if filled out, posts information from form to database. 
+    */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -47,7 +56,10 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * checks authentication. sees if complaint form is filled out.
+     * if it is filled out, posts data to complaint_model database
+    */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -68,7 +80,12 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * finds all the rows in associations database that have townhall ID
+     * every association, find association ID and extract houseold with association id
+     * extract household id and find all complaints with same association id and put them in a array
+     * @param String/Array $id = null - id of the user
+    */
     public function town_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -93,7 +110,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * performs authentication. extracts complaint from association and 
+     * puts them in a array. 
+     * @param String/Array $id = null - id of the user
+    */
     public function association_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -108,7 +129,11 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * performs authentication. extracts complaints from households and places 
+     * them in a array. 
+     * @param String/Array $id - id of the user
+    */
     public function household_get($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -119,7 +144,10 @@ class Complaints extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    /**
+     * gets the response that HTTP is okay to go 
+     * @ return null - runs the script with HTTP okay
+    */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);
     }
