@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?= img(array('src' => "images/gates-logo.jpg", 'alt' => "Logo GATES FUNDATION")) ?>
                             <?= img(array('src' => "images/care-logo.jpg", 'alt' => "Logo CARE")) ?>
                             <a class="bouton float-left" href="http://dashboard.csss-ci.com/login">
-                                Espace d'administration
+                                Connexion
                             </a> 
                         </div>
                     </div>
