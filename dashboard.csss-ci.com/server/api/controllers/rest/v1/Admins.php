@@ -161,7 +161,7 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have men. This access is only accessable in Admin accounts
+    * Retrieve the total headcount of all the men in the household_model + amount of households that have a man in it.
     */
     public function mens_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -178,7 +178,7 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have women. This access is only accessable in Admin accounts
+    * Retrieve the total headcount of all the women in the household_model + amount of households that have a woman in it.
     */
     public function women_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -195,7 +195,7 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have children. This method is only accessable in Admin accounts
+    * Retrieve the total headcount of all the children in the household_model + amount of households that have a children in it.
     */
     public function children_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -212,8 +212,9 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have individuals with birthdays after Janurary 2006 .
-    *    This method is only accessable in Admin accounts
+    * Retrieve the total headcount of all the ppl age 0 in the household_model + amount of 
+    *   households that have a person with bdays after jan 1 2006 in it.
+    * This method is only accessable in Admin accounts
     */
     public function ages0_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -232,8 +233,9 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have individuals with birthdays before 2006 and after 1998.
-    *    This method is only accessable in Admin accounts
+    * Retrieve the total headcount of all the people age 15 in the household_model + amount of 
+    *   households that have birthdays 1/1/1998 <= birthday <= 1/1/2006 in it.
+    * This method is only accessable in Admin accounts
     */
     public function ages15_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -251,8 +253,9 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have individuals with birthdays between 1971 and 1997.
-    *    This method is only accessable in Admin accounts
+    * Retrieve the total headcount of all the people age 22 in the household_model + amount of 
+    *   households that have birthdays 1/1/1971 <= birthday <= 1/1/1997 in it.
+    * This method is only accessable in Admin accounts
     */
     public function ages22_get() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -270,8 +273,9 @@ class Admins extends REST_Controller {
         }
     }
     /**
-    *  Retrieve all households that have individuals with birthdays before 1970
-    *    This method is only accessable in Admin accounts
+    * Retrieve the total headcount of all the people age 49 in the household_model + amount of 
+    *   households that have birthdays <= 1/1/1970 in it.
+    * This method is only accessable in Admin accounts
     */
     public function ages49_get() {
         $is_valid_token = $this->authorization_token->validateToken();

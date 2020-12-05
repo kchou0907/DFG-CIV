@@ -55,9 +55,9 @@ class Bankers_model extends CI_Model {
                         ->result();
     }
     /**
-     * shows a specified number of banker rows
+     * shows a specified number of banker rows from the top down
      * @param int $nbre - number of rows to be limited to
-     * @param $base=0 - number of rows to be skipped
+     * @param $base=0 - number of rows to be skipped, defaults to 0
      * @return Array - array containing the specified number of bankers
     */
     public function show($nbre, $base = 0) {
@@ -69,7 +69,7 @@ class Bankers_model extends CI_Model {
                         ->result();
     }
     /**
-     * update the bankers that fulfil a criteria
+     * update the bankers that fulfill a criteria
      * @param Array/String $data - banker attributes that we are updating the bankers to
      * @param Array/String $where - the condition that filters what subset of banker will be updated
      * @return boolean - a boolean that returns true if the data sucessfully updated,
@@ -80,7 +80,7 @@ class Bankers_model extends CI_Model {
                         ->update($this->table, $data);
     }
     /**
-     * deletes the bankers specified by the $where claus
+     * deletes the bankers specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of banker will be updated
      * @return boolean - a boolean that returns true if the data sucessfully deleted,
      *                     false if a problem arose during delete
@@ -90,7 +90,7 @@ class Bankers_model extends CI_Model {
                         ->delete($this->table);
     }
     /**
-     * Return a count of the bankers specified by the $where claus
+     * Return a count of the bankers specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of banker that are to be counted
      * @return integer - an integer matching the number of bankers fulfilling this criteria
     */

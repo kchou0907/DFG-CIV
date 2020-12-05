@@ -82,7 +82,7 @@ class Sanitations extends CI_Controller {
 
     /**
      * Performs form validation to make sure there is no erroneous information on the contact form,
-     *    sends to Stanlias if input is valid
+     *    sends message to Stanlias if input is valid
      * Loads the Sanitations views template but alters it to become the households page
      */
     public function contact() {

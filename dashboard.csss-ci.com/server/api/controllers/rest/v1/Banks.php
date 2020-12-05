@@ -8,15 +8,15 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Banks extends REST_Controller {
     /**
-    extends the parent constructer method
+    * Extends the parent constructer method
     */
     public function __construct() {
         parent::__construct();
     }
     /**
-     *performs authentication. creates an array if the id is not empty. 
-     *If empty then all the rows from banks_model is placed in the array.
-     * @param int $id = 0 - id of bank user
+     * Performs authentication. If id is provided, returns all rows in complaints table with the id. 
+     * If no value is passed in, then returns all rows form banks_model
+     * @param int $id = 0 - id of bank, defaults to 0
     */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -32,8 +32,9 @@ class Banks extends REST_Controller {
         }
     }
     /**
-     * performs authentication. checks to see if banker form is empty. 
-     * if it is not empty, stores information within database in banker_model
+     * Performs authentication. If banker form is filled out, adds new banker to banker_model.
+     * Does not do anything if database detects any of the information is incorrect (formatting,
+     * data type, etc)
     */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -81,9 +82,8 @@ class Banks extends REST_Controller {
         }
     }
     /**
-     * checks authentication. sees if banker form is filled out. 
-     * if filled out updates information within database
-     * @param String/Array $id - id of bank user
+     * Performs authentication. Updates existing bank's information
+     * @param String/Array $id - id of bank
     */
     public function index_put($id) {
 
@@ -99,9 +99,9 @@ class Banks extends REST_Controller {
         }
     }
     /**
-     * performs authentication. sees if form is filled out and if it is, saves information within database
-       also sets up html to display fields that banker user sees and needs to input 
-       also sends email to banker email from admin email confirming account creation
+     * Performs authentication. Parses form data and saves new bank into bank_model. Sends a 
+     * confirmation email.
+     * Basically index_post() with a confirmation email
     */
     public function banker_post() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -160,9 +160,8 @@ class Banks extends REST_Controller {
         }
     }
     /**
-     * extracts information from banker_model and saves it 
-     * in a array
-     * @param String/Array $id - id of banker user
+     * Finds and returns the bank's info, as specified by bankID
+     * @param String/Array $id - id of bank
     */
     public function bankers_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -177,8 +176,8 @@ class Banks extends REST_Controller {
         }
     }
     /**
-     * gets the response that HTTP is okay to go 
-     * @ return null - runs the script with HTTP okay
+    *  Healthcheck for this API endpoint. Returns a status of 200 OK if the controller has not run
+    *   into any errors
     */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);

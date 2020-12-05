@@ -8,15 +8,15 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Complaints extends REST_Controller {
     /**
-    extends the parent constructer method
+    * extends the parent constructer method
     */
     public function __construct() {
         parent::__construct();
     }
     /**
-     *performs authentication. creates an array if the id is not empty. 
-     *If empty then all the rows from complaint_model is placed in the array. 
-     * @param int $id = 0 - id of user
+     *performs authentication. If id is provided, returns all rows in complaints table with the id.
+     *If empty then returns all rows from complaints table
+     * @param int $id = 0 - id of complaint, defaults to 0
     */
     public function index_get($id = 0) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -32,8 +32,7 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * checks authentication. checks to see if complaint form is filled out
-     * if filled out, posts information from form to database. 
+     * Checks authentication. If complaint form is filled out, adds complaint to the complaint table
     */
     public function index_post() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -57,8 +56,8 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * checks authentication. sees if complaint form is filled out.
-     * if it is filled out, posts data to complaint_model database
+     * checks authentication. If complaints form is filled out and the ID already exists,
+     * updates the complaintID with the new complaint
     */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -81,10 +80,8 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * finds all the rows in associations database that have townhall ID
-     * every association, find association ID and extract houseold with association id
-     * extract household id and find all complaints with same association id and put them in a array
-     * @param String/Array $id = null - id of the user
+     * Performs authentication. Gets all of the complaints for a town
+     * @param String/Array $id = null - town's ID, defaults to null
     */
     public function town_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -111,9 +108,8 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * performs authentication. extracts complaint from association and 
-     * puts them in a array. 
-     * @param String/Array $id = null - id of the user
+     * Performs authentication. Gets all of an association's complaints
+     * @param String/Array $id = null - association's ID, defaults to null
     */
     public function association_get($id = null) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -130,9 +126,8 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * performs authentication. extracts complaints from households and places 
-     * them in a array. 
-     * @param String/Array $id - id of the user
+     * Performs authentication. Gets all of a household's complaints
+     * @param String/Array $id - household's id
     */
     public function household_get($id) {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -145,8 +140,8 @@ class Complaints extends REST_Controller {
         }
     }
     /**
-     * gets the response that HTTP is okay to go 
-     * @ return null - runs the script with HTTP okay
+    *  Healthcheck for this API endpoint. Returns a status of 200 OK if the controller has not run
+    *   into any errors
     */
     public function index_options() {
         return $this->response(NULL, REST_Controller::HTTP_OK);

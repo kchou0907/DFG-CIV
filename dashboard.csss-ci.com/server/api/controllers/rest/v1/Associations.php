@@ -100,8 +100,8 @@ class Associations extends REST_Controller {
     }
     /**
     * Updates an existing association account. The association account is
-    *  registered by it's the association data entered by an input form.
-    *  The data it will update the association with is entered by a file input
+    * registered by it's the association data entered by an input form.
+    * The data it will update the association with is entered by a file input
     */
     public function index_put() {
         $is_valid_token = $this->authorization_token->validateToken();
@@ -129,7 +129,10 @@ class Associations extends REST_Controller {
             $this->response(['status' => FALSE, 'message' => $is_valid_token['message']], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-
+    
+    /**
+    * Deletes an association from the associations table
+    */
     public function index_delete($id) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -141,6 +144,10 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+    * Searches through the associations table for a particular condition or filter. 
+    * @param String $search - A string that matches an association, receipt, or email
+    */
     public function search_get($search) {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {
@@ -151,6 +158,9 @@ class Associations extends REST_Controller {
         }
     }
 
+    /**
+     * Finds and returns whatever assocation that the user is registered to. 
+     */
     public function me_get() {
         $is_valid_token = $this->authorization_token->validateToken();
         if (!empty($is_valid_token) AND $is_valid_token['status'] === TRUE) {

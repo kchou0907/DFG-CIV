@@ -49,7 +49,7 @@ class Households_model extends CI_Model {
      * Shows a certain amount of rows (top down)
      *
      * @param Integer $nbre - number of rows to limit the results to
-     * @param Integer $base - number of rows to skip
+     * @param Integer $base - number of rows to skip, defaults to 0
      * @return Array containing the amount of rows you specified
      */
     public function show($nbre, $base = 0) {
@@ -89,7 +89,7 @@ class Households_model extends CI_Model {
     /**
      * Counts the number of rows in the entity with particular values
      *
-     * @param Array $data - what you want to match
+     * @param Array $data - what you want to match, defaults to NULL
      * @return Integer - number of rows with the data
      */
     public function count($data = NULL) {

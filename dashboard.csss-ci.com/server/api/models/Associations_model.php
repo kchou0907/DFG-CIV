@@ -72,9 +72,9 @@ class Associations_model extends CI_Model {
     }
 
     /**
-     * shows a specified number of association rows
+     * shows a specified number of association rows from the top down
      * @param int $nbre - number of rows to be limited to
-     * @param $base=0 - number of rows to be skipped
+     * @param $base=0 - number of rows to be skipped, defaults to 0
      * @return Array - array containing the specified number of associations
     */
     public function show($nbre, $base = 0) {
@@ -86,7 +86,7 @@ class Associations_model extends CI_Model {
                         ->result();
     }
     /**
-     * update the associations that fulfil a criteria
+     * update the associations that fulfill a criteria
      * @param Array/String $data - association attributes that we are updating the associations to
      * @param Array/String $where - the condition that filters what subset of association will be updated
      * @return boolean - a boolean that returns true if the data sucessfully updated,
@@ -97,7 +97,7 @@ class Associations_model extends CI_Model {
                         ->update($this->table, $data);
     }
     /**
-     * deletes the associations specified by the $where claus
+     * deletes the associations specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of association will be updated
      * @return boolean - a boolean that returns true if the data sucessfully deleted,
      *                     false if a problem arose during delete
@@ -107,7 +107,7 @@ class Associations_model extends CI_Model {
                         ->delete($this->table);
     }
     /**
-     * Return a count of the associations specified by the $where claus
+     * Return a count of the associations specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of association that are to be counted
      * @return integer - an integer that represents the number of associations matching this query
     */

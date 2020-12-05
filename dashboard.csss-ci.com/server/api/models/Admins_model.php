@@ -52,9 +52,9 @@ class Admins_model extends CI_Model {
                           ->result();
     }
     /**
-     * shows a specified number of admin rows
+     * shows a specified number of admin rows from the rop down
      * @param int $nbre - number of rows to be limited to
-     * @param $base=0 - number of rows to be skipped
+     * @param $base=0 - number of rows to be skipped, defaults to 0
      * @return Array - array containing the specified number of admins
     */
     public function show($nbre, $base = 0) {
@@ -65,7 +65,7 @@ class Admins_model extends CI_Model {
                         ->result();
     }
     /**
-     * update the admins that fulfil a criteria
+     * update the admins that fulfill a criteria
      * @param Array/String $data - admin attributes that we are updating the admins to
      * @param Array/String $where - the condition that filters what subset of admin will be updated
      * @return boolean - a boolean that returns true if the data sucessfully updated,
@@ -76,7 +76,7 @@ class Admins_model extends CI_Model {
                         ->update($this->table, $data);
     }
     /**
-     * deletes the admins specified by the $where claus
+     * deletes the admins specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of admin will be updated
      * @return boolean - a boolean that returns true if the data sucessfully deleted,
      *                     false if a problem arose during delete
@@ -86,7 +86,7 @@ class Admins_model extends CI_Model {
                         ->delete($this->table);
     }
     /**
-     * Return a count of the admins specified by the $where claus
+     * Return a count of the admins specified by the $where clause
      * @param Array/String $where - the condition that filters what subset of admin that are to be counted
      * @return integer - an integer matching the number of admins fulfilling this criteria
     */
