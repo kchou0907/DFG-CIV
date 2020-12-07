@@ -8,7 +8,7 @@
 <https://codeigniter.com/userguide3/general/styleguide.html#commenting>
 
 # Other Resources
-## [Master Folder]<https://drive.google.com/drive/folders/19lKZhVk8i2uWt0LwOYrq81o7ZIIcTPN2?usp=sharing>
+## [Master Folder](https://drive.google.com/drive/folders/19lKZhVk8i2uWt0LwOYrq81o7ZIIcTPN2?usp=sharing)
 ## [Master Doc]<https://docs.google.com/document/d/1tiVSJb_-o1nW99FSnSPuVsQOeQK91frzJYR2fx-d-84/edit?usp=sharing>
 
 
