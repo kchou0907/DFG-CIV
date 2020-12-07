@@ -1,17 +1,4 @@
 # DFG-CIV
-
-# For More Documentation Info:
-## CodeIgniter User Guide
-<https://codeigniter.com/userguide3/index.html>
-
-## Commenting Style Guide
-<https://codeigniter.com/userguide3/general/styleguide.html#commenting>
-
-# Other Resources
-## [Master Folder](https://drive.google.com/drive/folders/19lKZhVk8i2uWt0LwOYrq81o7ZIIcTPN2?usp=sharing)
-## [Master Doc](https://docs.google.com/document/d/1tiVSJb_-o1nW99FSnSPuVsQOeQK91frzJYR2fx-d-84/edit?usp=sharing)
-## [Our Figma Designs](https://www.figma.com/files/project/16958987/Care-CISSS)
-
 I'd like to start this off with an apology. I left a lot of lose ends - I was unable to complete most of the things that I wanted to do. There is still a lot of work to be done - please see the folder for the work that I started but was unable to finish (documentation sign up!, website features, app features file). This file should serve as a pretty decent orientation, things that took me a good couple of weeks to fully figure out.
 
 # Website
@@ -50,3 +37,17 @@ Contains all the code for the main csss-ci page. Self-explanatory.
 - In order to download folders from CPanel, you have to right click on the folder -> press "compress" -> right click on the compressed folder -> click download
 - The PHP MyAdmin database, website stats are all accessible through CPanel
 - I am not completely sure if the "get" functions in Admins.php (lines 163 - 294, dashboard controller file) are correct. Could not for the life of me figure out why they're adding the number of rows to the total headcount (the `$data = $age + count($kj)` line; I might just be reading the code wrong)
+
+# Resources
+## For More Documentation Info:
+### CodeIgniter User Guide
+<https://codeigniter.com/userguide3/index.html>
+
+## Commenting Style Guide
+<https://codeigniter.com/userguide3/general/styleguide.html#commenting>
+
+## Other Resources
+### [Master Folder](https://drive.google.com/drive/folders/19lKZhVk8i2uWt0LwOYrq81o7ZIIcTPN2?usp=sharing)
+### [Master Doc](https://docs.google.com/document/d/1tiVSJb_-o1nW99FSnSPuVsQOeQK91frzJYR2fx-d-84/edit?usp=sharing)
+### [Our Figma Designs](https://www.figma.com/files/project/16958987/Care-CISSS)
+
