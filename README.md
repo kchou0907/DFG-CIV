@@ -19,6 +19,7 @@ I'd like to start this off with an apology. I left a lot of lose ends - I was un
 There are two major parts to the website: [the main csss-ci site](https://www.csss-ci.com/) and the dashboard after logging in. The majority of the website ([the main csss-ci site](https://www.csss-ci.com/) + all of the backend) was built utilizing CodeIgniter. I'm not positive what version the website is running, but the documentation linked above seems to be accurate. Code Igniter operates on a model-view-controller framework. If you know what that means, great! Feel free to skip this next portion. If not, then here is a quick rundown (assuming you have some web dev experience).
 
 ---
+#### THE MVC
 
 ![alt text](https://github.com/kchou0907/DFG-CIV/blob/main/how%20the%20website%20works.png?raw=true)
 
@@ -48,4 +49,4 @@ Contains all the code for the main csss-ci page. Self-explanatory.
 - I have not uploaded any of the changes to the website yet (have not yet replaced the folders on CPanel). 
 - In order to download folders from CPanel, you have to right click on the folder -> press "compress" -> right click on the compressed folder -> click download
 - The PHP MyAdmin database, website stats are all accessible through CPanel
-- I am not completely sure if the "get" functions in Admins.php (lines 163 - 294, dashboard controller file) are correct. Could not for the life of me figure out why they're adding the number of rows to the total headcount (the '$data = $age + count($kj)' line; I might just be reading the code wrong)
+- I am not completely sure if the "get" functions in Admins.php (lines 163 - 294, dashboard controller file) are correct. Could not for the life of me figure out why they're adding the number of rows to the total headcount (the `$data = $age + count($kj)` line; I might just be reading the code wrong)
