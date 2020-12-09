@@ -18,7 +18,7 @@ This pretty much summarizes everything you need to know to edit [the main csss-c
 
 ---
 
-The dashboard, on the other hand is a little more complicated. While the backend is still done utilizing Code Igniter, the front end was generated utilizing Angular JS, which is why there is so much spaghetti code in the dashboard.csss-ci folder (dw, you don't have to care about any of it). The front end source code is located in csss_source. I believe the OG dev is currently working on that documentation - you'll have to check in with Sara about that.
+The dashboard, on the other hand is a little different. While the backend is still done utilizing Code Igniter, the front end was generated utilizing Angular JS, which is why there is so much spaghetti code in the dashboard.csss-ci folder (dw, you don't have to care about any of it). The front end source code is located in csss_source. I believe the OG dev is currently working on that documentation - you'll have to check in with Sara about that.
 
 ## File Layout
 ### css_source code/
