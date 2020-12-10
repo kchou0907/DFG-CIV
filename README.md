@@ -1,5 +1,14 @@
 # DFG-CIV
-I'd like to start this off with an apology. I left a lot of lose ends - I was unable to complete most of the things that I wanted to do. There is still a lot of work to be done - please see the folder for the work that I started but was unable to finish (documentation sign up, website features, app features files are things that need to be designed out + implemented). This file should serve as a pretty decent orientation, things that took me a good couple of weeks to fully figure out.
+I'd like to start this off with an apology. I left a lot of lose ends - I was unable to complete most of the things that I wanted to do. There is still a lot of work to be done - please see the folder for the work that I started but was unable to finish:
+
+* Finish hi-fidelity prototypes of the application's features (from the "App Features" doc) on Figma, maybe make it Android
+* Finish documenting the code.
+  - I'm p sure my team members have done it and just haven't pushed the changes. Still pressing them for it; hopefully you'll see some PRs soon
+  - But you're gonna have to vet the comments. Like actually double check all of them
+* Finish discussing + implementing the things in the "Website features/improvements" doc
+  - Esp dashboard, that is one ugly duckling
+  
+This file should serve as a pretty decent orientation, things that took me a good couple of weeks to fully figure out.
 
 # Website
 ## Brief Summary of How the Website was Built
